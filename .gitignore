@@ -1,0 +1,60 @@
+# ----- Secrets & local env -----
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+
+# ----- Python -----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+backend/.venv/
+
+# Local DB
+backend/*.db
+backend/rhino.db
+
+# ----- Node -----
+frontend/node_modules/
+frontend/dist/
+.npm-cache/
+
+# ----- Uploads & generated assets (do not commit binary data) -----
+uploads/
+backend/uploads/
+
+# Checkpoints / large weights (keep placeholders only if needed)
+backend/checkpoints_reid/*
+!backend/checkpoints_reid/.gitignore
+
+# ----- IDE & OS -----
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ----- Logs -----
+*.log
+npm-debug.log*
+
+# ----- Docker (optional local overrides) -----
+docker-compose.override.yml

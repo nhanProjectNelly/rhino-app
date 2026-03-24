@@ -1,0 +1,75 @@
+# generated: 2026-03-23
+# last_updated: 2026-03-23 (E6 implementation sync)
+# project: rhino_app
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: "{project-root}/_bmad-output/implementation-artifacts"
+#
+# SYNC: E6 stories implemented in codebase (2026-03-23):
+# - 6-1: GET /predict/history?reported_only=true (admin); Gallery "Reported only" checkbox
+# - 6-2: Routes /dashboard, /list-management, /predict/single; Layout nav; Dashboard links
+# - 6-3: predict.py subprocess uses tempfile + unlink
+# - 6-4: backend/tests/test_smoke.py + requirements-dev.txt + DOCUMENTATION §8
+# - 6-5: docs/PRODUCTION_CHECKLIST.md
+# E5-2: English policy — ongoing; CI optional → review
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Story Status:
+#   - backlog | ready-for-dev | in-progress | review | done
+
+generated: "2026-03-23"
+last_updated: "2026-03-23"
+project: rhino_app
+project_key: NOKEY
+tracking_system: file-system
+story_location: "{project-root}/_bmad-output/implementation-artifacts"
+
+development_status:
+  epic-1: done
+  1-1-user-login-and-protected-session: done
+  1-2-admin-only-gallery-operations: done
+  1-3-predict-rate-limit-for-standard-users-only: done
+  epic-1-retrospective: optional
+
+  epic-2: done
+  2-1-browse-identities-and-filtered-images: done
+  2-2-upload-gallery-image-with-description-and-confirmation: done
+  epic-2-retrospective: optional
+
+  epic-3: done
+  3-1-set-based-re-id-with-explicit-failure-modes: done
+  3-2-per-part-llm-description-on-predict-path: done
+  3-3-persist-prediction-record-with-top-5-payload: done
+  epic-3-retrospective: optional
+
+  epic-4: done
+  4-1-confirm-prediction-into-gallery: done
+  4-2-report-wrong-prediction-with-correct-identity: done
+  4-3-prediction-history-for-audit: done
+  epic-4-retrospective: optional
+
+  epic-5: done
+  5-1-openapi-documentation-available: done
+  5-2-english-only-api-and-ui-surfaces: review
+  epic-5-retrospective: optional
+
+  epic-6: done
+  6-1-admin-visibility-for-reported-predictions: done
+  6-2-unify-or-remove-orphan-frontend-routes: done
+  6-3-safe-subprocess-re-id-output-file: done
+  6-4-automated-api-smoke-tests: done
+  6-5-production-secrets-checklist: done
+  epic-6-retrospective: optional
+
+  epic-7: in-progress
+  7-1-persist-single-upload-source-image-with-review-status: done
+  7-2-report-routes-images-to-pending-review: done
+  7-3-admin-review-actions-assign-create-junk: done
+  7-4-non-rhino-and-audit-log: in-progress
+  epic-7-retrospective: optional

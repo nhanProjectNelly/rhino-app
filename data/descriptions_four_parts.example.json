@@ -1,0 +1,14 @@
+{
+  "White rhinos/10_rhino": {
+    "body": "full; medium; smooth; light mud on legs",
+    "head": "front_left; short blunt horn; round muzzle; medium wrinkles",
+    "left_ear": "edge intact; 1 notch; top; tuft present",
+    "right_ear": "edge torn; 2 notches; mid; tuft absent"
+  },
+  "Boma ID5301/5301_img_01": {
+    "body": "partial; large; heavy_wrinkle",
+    "head": "",
+    "left_ear": "",
+    "right_ear": ""
+  }
+}

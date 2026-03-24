@@ -1,0 +1,20 @@
+# End-to-end rhino_app: API + LLM describe + YOLO crop + in-process Re-ID (ai_core → IndivAID).
+#
+# Prereqs outside pip:
+#   - IndivAID checkout on disk; set INDIVAID_ROOT, MODEL_WEIGHT, INDIVAID_REID_CONFIG (see .env.example)
+#   - PYTHONPATH includes rhino_app root so `ai_core` imports work (e.g. PYTHONPATH=.. from backend/)
+#
+# Install:
+#   cd rhino_app/backend
+#   pip install -r requirements-e2e.txt
+#
+# For GPU builds, install torch/torchvision from https://pytorch.org/get-started/locally/ first, then:
+#   pip install -r requirements.txt
+#   pip install ultralytics>=8.3.0
+#
+
+-r requirements.txt
+
+# Paired PyTorch stack (same major as tested in requirements-rhino.lock.txt). Adjust for your CUDA/CPU wheel.
+torch==2.8.0
+torchvision==0.23.0

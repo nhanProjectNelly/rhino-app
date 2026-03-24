@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: rhino_db
+    environment:
+      POSTGRES_DB: rhino_app
+      POSTGRES_USER: rhino
+      POSTGRES_PASSWORD: rhino
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rhino -d rhino_app"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: rhino_backend
+    environment:
+      DATABASE_URL: postgresql+asyncpg://rhino:rhino@db:5432/rhino_app
+      SECRET_KEY: rhino-app-secret-change-in-production
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      INDIVAID_ROOT: /app/IndivAID
+      MODEL_WEIGHT: production_checkpoint
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ../IndivAID:/app/IndivAID
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: rhino_frontend
+    environment:
+      VITE_API_PROXY_TARGET: http://backend:8000
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+
+volumes:
+  postgres_data:
