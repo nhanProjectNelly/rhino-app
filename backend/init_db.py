@@ -10,7 +10,7 @@ import asyncio
 from app.database import engine, Base, AsyncSessionLocal
 from app.models import User
 from app.auth import get_password_hash
-from app.services.init_high_quality import migrate_high_quality_to_assets
+from app.services.init_high_quality import migrate_high_quality_to_assets, migrate_high_quality_cropped_to_assets
 
 
 def _add_description_source(sync_conn):
@@ -66,17 +66,23 @@ async def init(*, reset: bool = False, no_high_quality: bool = False):
 
         if not no_high_quality:
             try:
-                out = await migrate_high_quality_to_assets(db)
+                # Prefer cropped HQ + part crops + (optional) descriptions from IndivAID
+                out = await migrate_high_quality_cropped_to_assets(db)
+                if out.get("skipped"):
+                    # Fallback: full-frame high_quality only
+                    out = await migrate_high_quality_to_assets(db)
                 await db.commit()
                 if out.get("skipped"):
                     print("High-quality init:", out.get("reason", "skipped"))
                 else:
                     print(
-                        "High-quality init: list_id=%s, identities=%s, images=%s (source=%s)"
+                        "High-quality init: list_id=%s, identities=%s, images=%s, anchors=%s, parts=%s (source=%s)"
                         % (
                             out.get("list_id"),
                             out.get("identities", 0),
                             out.get("images", 0),
+                            out.get("anchors_created", 0),
+                            out.get("parts_created", 0),
                             out.get("source", ""),
                         )
                     )

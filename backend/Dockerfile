@@ -17,4 +17,4 @@ COPY ai_core /app/ai_core
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "python init_db.py --no-high-quality && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+CMD ["sh", "-c", "if [ \"${NO_HIGH_QUALITY:-0}\" = \"1\" ]; then python init_db.py --no-high-quality; else python init_db.py; fi && uvicorn app.main:app --host 0.0.0.0 --port 8000"]

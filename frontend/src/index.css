@@ -815,6 +815,26 @@ a.btn-icon-eye:hover { background: #f6f8fa; border-color: #afb8c1; }
 .detail-manual-select-wrap select { font-size: 0.8rem; padding: 4px 6px; max-width: 140px; }
 .detail-part-note-label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.75rem; font-weight: 600; color: #57606a; }
 .detail-part-note { font-weight: 400; font-size: 0.85rem; width: 100%; }
+.detail-llm-preview {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  background: #f6f8fa;
+}
+.detail-llm-preview-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #57606a;
+  margin-bottom: 0.25rem;
+}
+.detail-llm-preview-text {
+  font-size: 0.85rem;
+  font-weight: 400;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #24292f;
+}
 .detail-form-hint { margin-bottom: 0.75rem; }
 .rhino-img-detail-cell-empty .btn-primary { margin-top: 0.5rem; }
 

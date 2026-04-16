@@ -42,6 +42,8 @@ rhino_app/
 │   ├── BUSINESS_LOGIC.md                    # Product decision rules and status flow
 │   ├── UI_UPDATE_AND_DESIGN_SYSTEM.md      # Tokens, phases, inventory for UI refresh
 │   ├── PRODUCTION_CHECKLIST.md             # Secrets, HTTPS, DB, go-live
+│   ├── SERVER_INSTALL.md                   # Linux server install (nginx, systemd, DB)
+│   ├── DEPLOY_DATA_SYNC.md                 # Git + data to copy (env, IndivAID, weights, init_db)
 │   └── CHECKPOINTS_AND_DESCRIPTION_PARTS.md # body/ear/head + UI form → JSON
 ├── AGENTS.md                # Pointers for AI tools (links language policy)
 ├── README.md                # Quick start
@@ -189,6 +191,7 @@ All user-visible strings in the app source are in **English**.
 - Change default admin password and `SECRET_KEY` before any production use.
 - Do not commit `.env` or API keys.
 - Structured go-live steps: **[PRODUCTION_CHECKLIST.md](PRODUCTION_CHECKLIST.md)**.
+- Server setup (Ubuntu-style, nginx, systemd, PostgreSQL): **[SERVER_INSTALL.md](SERVER_INSTALL.md)**.
 
 ## 8. Automated tests (backend)
 

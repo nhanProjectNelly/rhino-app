@@ -53,6 +53,11 @@ const emptyNotes: Record<PartKey, string> = {
   body: '',
 };
 
+function stripNoteSuffix(s: string): string {
+  if (!s) return '';
+  return s.replace(/\s+note:\s+.*$/i, '').trim();
+}
+
 export function RhinoImageDetail() {
   const { identityId, imageId } = useParams<{ identityId: string; imageId: string }>();
   const iid = Number(identityId);
@@ -246,6 +251,7 @@ export function RhinoImageDetail() {
         <div className="detail-part-rows">
           {PART_ORDER.map((key) => {
             const slot = detail.slots[key] as Slot | null | undefined;
+            const llmText = stripNoteSuffix(String(detail.canonical_description_parts?.[key] || ''));
 
             return (
               <div key={key} className="detail-part-row">
@@ -316,6 +322,12 @@ export function RhinoImageDetail() {
                         onChange={(e) => setDescNotes((n) => ({ ...n, [key]: e.target.value }))}
                       />
                     </label>
+                    {llmText ? (
+                      <div className="detail-llm-preview" aria-label="LLM generated description (read-only)">
+                        <div className="detail-llm-preview-title">LLM (from existing data)</div>
+                        <div className="detail-llm-preview-text">{llmText}</div>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </div>

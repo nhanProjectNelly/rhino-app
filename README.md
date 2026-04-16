@@ -10,6 +10,7 @@ Rhino gallery, re-identification, and description tooling.
 - [docs/PART_DESCRIPTION_SPEC_FOR_INDIVAID.md](docs/PART_DESCRIPTION_SPEC_FOR_INDIVAID.md) — ear / face / body spec for IndivAID prompt updates  
 - [docs/CHECKPOINTS_AND_DESCRIPTION_PARTS.md](docs/CHECKPOINTS_AND_DESCRIPTION_PARTS.md) — YOLO crops + UI form → JSON  
 - [LOCALHOST.md](LOCALHOST.md) — PostgreSQL localhost setup  
+- [docs/SERVER_INSTALL.md](docs/SERVER_INSTALL.md) — production server install (nginx, systemd, PostgreSQL)  
 
 ## Run backend (FastAPI)
 
@@ -50,6 +51,16 @@ Run all services (PostgreSQL + backend + frontend):
 ```bash
 cd rhino_app
 docker compose up --build
+```
+
+- If you have IndivAID data mounted (default `../IndivAID`), the backend container runs `python init_db.py` on startup and will
+  prefer importing `IndivAID/Rhino_photos/high_quality_cropped` + `high_quality_cropped_parts` (and `descriptions_four_parts.json`
+  if present). It falls back to `IndivAID/Rhino_photos/high_quality` when cropped data is missing.
+- To skip IndivAID import on startup:
+
+```bash
+cd rhino_app
+NO_HIGH_QUALITY=1 docker compose up --build
 ```
 
 - Frontend: http://localhost:5173

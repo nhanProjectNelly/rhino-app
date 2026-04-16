@@ -27,6 +27,8 @@ services:
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       INDIVAID_ROOT: /app/IndivAID
       MODEL_WEIGHT: production_checkpoint
+      # Set to "1" to skip importing IndivAID data on container start
+      NO_HIGH_QUALITY: ${NO_HIGH_QUALITY:-0}
     depends_on:
       db:
         condition: service_healthy
